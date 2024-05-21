@@ -47,8 +47,7 @@
             <url>https://maven.pkg.github.com/INBPM0420L/homework-project-utils</url>
         </repository>
     </repositories>
-
-
+    
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>

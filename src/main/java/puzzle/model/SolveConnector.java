@@ -6,18 +6,39 @@ import puzzle.solver.Node;
 
 import java.util.Optional;
 
+/**
+ * The {@code SolveConnector} class provides functionality to solve a puzzle using the Breadth-First Search algorithm.
+ * It integrates with the {@link puzzle.solver.BreadthFirstSearch} class and handles the solution process.
+ *
+ * @see puzzle.solver.BreadthFirstSearch
+ * @see puzzle.solver.Node
+ */
 public class SolveConnector {
 
     private final BreadthFirstSearch<String> solver;
 
+    /**
+     * Constructs a new {@code SolveConnector} with a Breadth-First Search solver.
+     */
     public SolveConnector() {
         this.solver = new BreadthFirstSearch<>();
     }
 
+    /**
+     * Solves the puzzle given an initial state.
+     *
+     * @param initialState the initial state of the puzzle
+     * @return an {@code Optional} containing the solution node if a solution is found, or an empty {@code Optional} if no solution is found
+     */
     public Optional<Node<String>> solvePuzzle(PuzzleState initialState) {
         return solver.solve(initialState);
     }
 
+    /**
+     * Prints the solution to the puzzle.
+     *
+     * @param solution an {@code Optional} containing the solution node
+     */
     public void printSolution(Optional<Node<String>> solution) {
         solution.ifPresentOrElse(
                 node -> {
@@ -29,6 +50,11 @@ public class SolveConnector {
         );
     }
 
+    /**
+     * Recursively prints the path to the solution node.
+     *
+     * @param node the current node in the path
+     */
     private void printPathTo(Node<String> node) {
         node.getParent().ifPresent(this::printPathTo);
         System.out.println(node.getMove().orElse("") + " -> " + node.getState());
@@ -36,16 +62,12 @@ public class SolveConnector {
 
     public static void main(String[] args) {
         System.out.println("Start!!!");
-        // Create a puzzle state
         PuzzleState initialState = new PuzzleState();
 
-        // Create a SolveConnector instance
         SolveConnector solveConnector = new SolveConnector();
 
-        // Solve the puzzle
         Optional<Node<String>> solution = solveConnector.solvePuzzle(initialState);
 
-        // Print the solution
         solveConnector.printSolution(solution);
     }
 }

@@ -3,6 +3,10 @@ package puzzle.model;
 import java.util.Scanner;
 import java.util.Set;
 
+/**
+ * The {@code TerminalRun} class provides a terminal-based interface to play the puzzle game.
+ * It allows users to interact with the game through the command line.
+ */
 public class TerminalRun {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -30,6 +34,12 @@ public class TerminalRun {
         System.out.println("Congratulations! The puzzle is solved.");
     }
 
+    /**
+     * Prints the current state of the game board to the terminal.
+     * It uses different characters to represent the various types of squares.
+     *
+     * @param puzzleState the current state of the puzzle
+     */
     private static void printBoard(PuzzleState puzzleState) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 5; j++) {

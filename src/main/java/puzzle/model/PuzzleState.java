@@ -7,10 +7,21 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import java.util.HashSet;
 import java.util.Set;
 
+
+/**
+ * The {@code PuzzleState} class represents the state of the puzzle game board.
+ * It implements the {@link puzzle.State} and {@link puzzle.TwoPhaseMoveState} interfaces.
+ *
+ * @see puzzle.State
+ * @see puzzle.TwoPhaseMoveState
+ */
 public class PuzzleState implements TwoPhaseMoveState {
 
     private ReadOnlyObjectWrapper<Square>[][] board;
 
+    /**
+     * Constructs a new {@code PuzzleState} object with an initial board configuration.
+     */
     public PuzzleState() {
         this.board = new ReadOnlyObjectWrapper[3][5];
         initializeBoard();
@@ -41,34 +52,62 @@ public class PuzzleState implements TwoPhaseMoveState {
         int numCols = board[0].length;
 
         for (int i = 0; i < numRows; i++) {
-            board[i][0].set(Square.RED); // Set RED squares in the first column
+            board[i][0].set(Square.RED);
         }
 
         for (int i = 0; i < numRows; i++) {
-            board[i][numCols - 1].set(Square.BLUE); // Set BLUE squares in the last column
+            board[i][numCols - 1].set(Square.BLUE);
         }
     }
 
-
+    /**
+     * Returns the property representing the square at the specified position on the game board.
+     *
+     * @param i the row index of the square
+     * @param j the column index of the square
+     * @return the {@code ReadOnlyObjectProperty} representing the square
+     */
     public ReadOnlyObjectProperty<Square> squareProperty(int i, int j) {
         return board[i][j].getReadOnlyProperty();
     }
 
+    /**
+     * Retrieves the square at the specified position on the game board.
+     *
+     * @param p the position of the square
+     * @return the {@code Square} at the specified position
+     */
     public Square getSquare(Position p) {
         return board[p.row()][p.col()].get();
     }
 
+    /**
+     * Sets the square at the specified position on the game board.
+     *
+     * @param p the position of the square
+     * @param square the {@code Square} to set
+     */
     private void setSquare(Position p, Square square) {
         board[p.row()][p.col()].set(square);
     }
 
+    /**
+     * Checks if the game is solved.
+     *
+     * @return {@code true} if the game is solved, {@code false} otherwise
+     */
     @Override
     public boolean isSolved() {
         return (board[0][0].get() == Square.BLUE && board[1][0].get() == Square.BLUE && board[2][0].get() == Square.BLUE) &&
                 (board[0][4].get() == Square.RED && board[1][4].get() == Square.RED && board[2][4].get() == Square.RED);
     }
 
-
+    /**
+     * Checks if the specified move is legal.
+     *
+     * @param move the move to check
+     * @return {@code true} if the move is legal, {@code false} otherwise
+     */
     @Override
     public boolean isLegalMove(Object move) {
         String moveStr = (String) move;
@@ -100,6 +139,11 @@ public class PuzzleState implements TwoPhaseMoveState {
     }
 
 
+    /**
+     * Makes the specified move on the game board.
+     *
+     * @param move the move to make
+     */
     @Override
     public void makeMove(Object move) {
         String moves = (String) move;
@@ -118,6 +162,11 @@ public class PuzzleState implements TwoPhaseMoveState {
     }
 
 
+    /**
+     * Returns a set of legal moves.
+     *
+     * @return a set of legal moves
+     */
     @Override
     public Set<String> getLegalMoves() {
         Set<String> legalMoves = new HashSet<>();
@@ -130,19 +179,19 @@ public class PuzzleState implements TwoPhaseMoveState {
             int j = idx % numCols;
 
             if (board[i][j].get() == Square.RED || board[i][j].get() == Square.BLUE) {
-                // Up
+
                 if (i > 0 && board[i - 1][j].get() == Square.NONE) {
                     legalMoves.add(i + "," + j + "-" + (i - 1) + "," + j);
                 }
-                // Down
+
                 if (i + 1 < numRows && board[i + 1][j].get() == Square.NONE) {
                     legalMoves.add(i + "," + j + "-" + (i + 1) + "," + j);
                 }
-                // Left
+
                 if (j > 0 && board[i][j - 1].get() == Square.NONE) {
                     legalMoves.add(i + "," + j + "-" + i + "," + (j - 1));
                 }
-                // Right
+
                 if (j + 1 < numCols && board[i][j + 1].get() == Square.NONE) {
                     legalMoves.add(i + "," + j + "-" + i + "," + (j + 1));
                 }
@@ -151,6 +200,12 @@ public class PuzzleState implements TwoPhaseMoveState {
         return legalMoves;
     }
 
+    /**
+     * Checks if it is legal to move from the specified position.
+     *
+     * @param from the position to move from
+     * @return {@code true} if it is legal to move from the specified position, {@code false} otherwise
+     */
     @Override
     public boolean isLegalToMoveFrom(Object from) {
         Square square = getSquare((Position) from);
@@ -158,6 +213,11 @@ public class PuzzleState implements TwoPhaseMoveState {
     }
 
 
+    /**
+     * Creates a deep copy of the puzzle state.
+     *
+     * @return a deep copy of the puzzle state
+     */
     @Override
     public PuzzleState clone() {
         // Create a new PuzzleState object
@@ -174,6 +234,11 @@ public class PuzzleState implements TwoPhaseMoveState {
     }
 
 
+    /**
+     * Constructs a new {@code PuzzleState} with the specified board.
+     *
+     * @param board the board representing the state of the puzzle
+     */
     public PuzzleState(ReadOnlyObjectWrapper<Square>[][] board) {
         this.board = board;
     }
