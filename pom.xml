@@ -63,12 +63,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>hu.unideb.inf</groupId>
-            <artifactId>homework-project-utils</artifactId>
-            <version>1.0.0</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>org.tinylog</groupId>
             <artifactId>tinylog-api</artifactId>
             <version>${tinylog.version}</version>
