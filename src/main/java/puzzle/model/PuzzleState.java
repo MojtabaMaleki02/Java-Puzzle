@@ -209,7 +209,11 @@ public class PuzzleState implements TwoPhaseMoveState {
     @Override
     public boolean isLegalToMoveFrom(Object from) {
         Square square = getSquare((Position) from);
-        return square == Square.RED || square == Square.BLUE;
+        int fromRow = ((Position) from).row();
+        int fromCol = ((Position) from).col();
+
+        return (square == Square.RED || square == Square.BLUE)
+                && (getLegalMoves().toString()).contains(fromRow + "," + fromCol);
     }
 
 
