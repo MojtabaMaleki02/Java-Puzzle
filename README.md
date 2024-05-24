@@ -1,59 +1,97 @@
-homework-project-utils
-======================
+Logic Puzzle Project
+====================
 
-Utility classes for the Software Engineering and Technologies homework project.
+This project implements a state-space representation for a logic puzzle. The puzzle state class implements the `puzzle.State` interface provided by the instructors.
 
-If your project is about a logic puzzle, the class implementing the state-space representation must implement the [puzzle.State](https://inbpm0420l.github.io/homework-project-utils/javadoc/puzzle/State.html) interface.
+## Game Description
 
-If your project is about a two-player game, the class implementing the state-space representation must implement the [game.State](https://inbpm0420l.github.io/homework-project-utils/javadoc/game/State.html) interface.
+The game board consists of 10 squares arranged in 3 rows and 5 columns. 
+The game is played with 3 red and 3 blue stones. Initially, the stones are arranged on the board as follows:
 
-## Documentation
+![image](https://i.ibb.co/0Dr80XB/image-1.png)
 
-* [Javadoc](https://inbpm0420l.github.io/homework-project-utils/javadoc/)
 
-## Download
+In a move, one of the stones must be moved to a neighboring empty square (consider the squares that are to the left, right, top, or bottom of the stone chosen).
 
-Add the following dependency to your `pom.xml` file:
+The goal of the game is to swap the red and the blue stones, i.e., to obtain the following board configuration:
 
-```xml
-<dependency>
-    <groupId>hu.unideb.inf</groupId>
-    <artifactId>homework-project-utils</artifactId>
-    <version>1.0.0</version>
-    <scope>compile</scope>
-</dependency>
-```
+![image](https://i.ibb.co/XWV3jg1/image-3.png)
 
-The artifact can be downloaded from [GitHub Packages](https://docs.github.com/en/packages) that requires the following element to be added to your `pom.xml` file:
+## PuzzleState Implementation
 
-```xml
-<repositories>
-    <repository>
-        <id>github</id>
-        <url>https://maven.pkg.github.com/INBPM0420L/homework-project-utils</url>
-    </repository>
-</repositories>
-```
+The `PuzzleState` class represents the state of the puzzle game board. It initializes a board with predefined `Square` values and provides methods to make moves, check the legality of moves, and determine if the puzzle is solved.
 
-Note that GitHub Packages requires authentication using a personal access token (classic) that can be created [here](https://github.com/settings/tokens).
+### Key Methods
 
-> [!IMPORTANT]
-> You must create a personal access token (PAT) with the `read:packages` scope.
+- `isSolved()`: Checks if the game is solved.
+- `isLegalMove(Object move)`: Checks if a given move is legal.
+- `makeMove(Object move)`: Executes a given move on the board.
+- `getLegalMoves()`: Returns a set of all possible legal moves.
+- `clone()`: Creates a deep copy of the current puzzle state.
 
-Finally, you need a `settings.xml` file with the following content to store your PAT: 
+## One of the Solutions
 
-```xml
-<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-    <servers>
-        <server>
-            <id>github</id>
-            <username><!-- Your GitHub username --></username>
-            <password><!-- Your GitHub personal access token (classic) --></password>
-        </server>
-    </servers>
-</settings>
-```
+Below is a sequence of moves that represents a solution and can be used to solve the puzzle:
 
-The `settings.xml` file must be placed in the `.m2` directory in your home directory, i.e., in the same directory that stores your local Maven repository.
+1. Move stone from row 1, column 4 to row 1, column 3.
+2. Move stone from row 1, column 3 to row 1, column 2.
+3. Move stone from row 1, column 2 to row 0, column 2.
+4. Move stone from row 1, column 0 to row 1, column 1.
+5. Move stone from row 1, column 1 to row 1, column 2.
+6. Move stone from row 1, column 2 to row 1, column 3.
+7. Move stone from row 1, column 3 to row 1, column 4.
+8. Move stone from row 0, column 0 to row 1, column 0.
+9. Move stone from row 1, column 0 to row 1, column 1.
+10. Move stone from row 1, column 1 to row 1, column 2.
+11. Move stone from row 1, column 2 to row 1, column 3.
+12. Move stone from row 0, column 2 to row 1, column 2.
+13. Move stone from row 1, column 2 to row 1, column 1.
+14. Move stone from row 1, column 1 to row 1, column 0.
+15. Move stone from row 1, column 0 to row 0, column 0.
+16. Move stone from row 1, column 3 to row 1, column 2.
+17. Move stone from row 1, column 2 to row 1, column 1.
+18. Move stone from row 1, column 1 to row 1, column 0.
+19. Move stone from row 1, column 4 to row 1, column 3.
+20. Move stone from row 1, column 3 to row 1, column 2.
+21. Move stone from row 1, column 2 to row 1, column 1.
+22. Move stone from row 0, column 4 to row 1, column 4.
+23. Move stone from row 1, column 4 to row 1, column 3.
+24. Move stone from row 1, column 3 to row 1, column 2.
+25. Move stone from row 1, column 2 to row 0, column 2.
+26. Move stone from row 1, column 1 to row 1, column 2.
+27. Move stone from row 1, column 2 to row 1, column 3.
+28. Move stone from row 1, column 3 to row 1, column 4.
+29. Move stone from row 1, column 4 to row 0, column 4.
+30. Move stone from row 1, column 0 to row 1, column 1.
+31. Move stone from row 1, column 1 to row 1, column 2.
+32. Move stone from row 1, column 2 to row 1, column 3.
+33. Move stone from row 1, column 3 to row 1, column 4.
+34. Move stone from row 2, column 0 to row 1, column 0.
+35. Move stone from row 1, column 0 to row 1, column 1.
+36. Move stone from row 1, column 1 to row 1, column 2.
+37. Move stone from row 1, column 2 to row 1, column 3.
+38. Move stone from row 0, column 2 to row 1, column 2.
+39. Move stone from row 1, column 2 to row 1, column 1.
+40. Move stone from row 1, column 1 to row 1, column 0.
+41. Move stone from row 1, column 0 to row 2, column 0.
+42. Move stone from row 1, column 3 to row 1, column 2.
+43. Move stone from row 1, column 2 to row 1, column 1.
+44. Move stone from row 1, column 1 to row 1, column 0.
+45. Move stone from row 1, column 4 to row 1, column 3.
+46. Move stone from row 1, column 3 to row 1, column 2.
+47. Move stone from row 1, column 2 to row 1, column 1.
+48. Move stone from row 2, column 4 to row 1, column 4.
+49. Move stone from row 1, column 4 to row 1, column 3.
+50. Move stone from row 1, column 3 to row 1, column 2.
+51. Move stone from row 1, column 2 to row 0, column 2.
+52. Move stone from row 1, column 1 to row 1, column 2.
+53. Move stone from row 1, column 2 to row 1, column 3.
+54. Move stone from row 1, column 3 to row 1, column 4.
+55. Move stone from row 1, column 4 to row 2, column 4.
+56. Move stone from row 1, column 0 to row 1, column 1.
+57. Move stone from row 1, column 1 to row 1, column 2.
+58. Move stone from row 1, column 2 to row 1, column 3.
+59. Move stone from row 1, column 3 to row 1, column 4.
+60. Move stone from row 0, column 2 to row 1, column 2.
+61. Move stone from row 1, column 2 to row 1, column 1.
+62. Move stone from row 1, column 1 to row 1, column 0.
