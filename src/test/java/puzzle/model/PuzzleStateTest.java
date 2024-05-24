@@ -6,18 +6,81 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PuzzleStateTest {
 
-    /*
+
     @Test
     void isSolved() {
         PuzzleState puzzleState = new PuzzleState();
         assertFalse(puzzleState.isSolved());
-        puzzleState.makeMove("0,1-1,1");
-        puzzleState.makeMove("1,1-1,2");
+
+        puzzleState.makeMove("1,4-1,3");
+        puzzleState.makeMove("1,3-1,2");
         puzzleState.makeMove("1,2-0,2");
+        puzzleState.makeMove("1,0-1,1");
+        puzzleState.makeMove("1,1-1,2");
+        puzzleState.makeMove("1,2-1,3");
+        puzzleState.makeMove("1,3-1,4");
+        puzzleState.makeMove("0,0-1,0");
+        puzzleState.makeMove("1,0-1,1");
+        puzzleState.makeMove("1,1-1,2");
+        puzzleState.makeMove("1,2-1,3");
+        puzzleState.makeMove("0,2-1,2");
+        puzzleState.makeMove("1,2-1,1");
+        puzzleState.makeMove("1,1-1,0");
+        puzzleState.makeMove("1,0-0,0");
+        puzzleState.makeMove("1,3-1,2");
+        puzzleState.makeMove("1,2-1,1");
+        puzzleState.makeMove("1,1-1,0");
+        puzzleState.makeMove("1,4-1,3");
+        puzzleState.makeMove("1,3-1,2");
+        puzzleState.makeMove("1,2-1,1");
+        puzzleState.makeMove("0,4-1,4");
+        puzzleState.makeMove("1,4-1,3");
+        puzzleState.makeMove("1,3-1,2");
+        puzzleState.makeMove("1,2-0,2");
+        puzzleState.makeMove("1,1-1,2");
+        puzzleState.makeMove("1,2-1,3");
+        puzzleState.makeMove("1,3-1,4");
+        puzzleState.makeMove("1,4-0,4");
+        puzzleState.makeMove("1,0-1,1");
+        puzzleState.makeMove("1,1-1,2");
+        puzzleState.makeMove("1,2-1,3");
+        puzzleState.makeMove("1,3-1,4");
+        puzzleState.makeMove("2,0-1,0");
+        puzzleState.makeMove("1,0-1,1");
+        puzzleState.makeMove("1,1-1,2");
+        puzzleState.makeMove("1,2-1,3");
+        puzzleState.makeMove("0,2-1,2");
+        puzzleState.makeMove("1,2-1,1");
+        puzzleState.makeMove("1,1-1,0");
+        puzzleState.makeMove("1,0-2,0");
+        puzzleState.makeMove("1,3-1,2");
+        puzzleState.makeMove("1,2-1,1");
+        puzzleState.makeMove("1,1-1,0");
+        puzzleState.makeMove("1,4-1,3");
+        puzzleState.makeMove("1,3-1,2");
+        puzzleState.makeMove("1,2-1,1");
+        puzzleState.makeMove("2,4-1,4");
+        puzzleState.makeMove("1,4-1,3");
+        puzzleState.makeMove("1,3-1,2");
+        puzzleState.makeMove("1,2-0,2");
+        puzzleState.makeMove("1,1-1,2");
+        puzzleState.makeMove("1,2-1,3");
+        puzzleState.makeMove("1,3-1,4");
+        puzzleState.makeMove("1,4-2,4");
+        puzzleState.makeMove("1,0-1,1");
+        puzzleState.makeMove("1,1-1,2");
+        puzzleState.makeMove("1,2-1,3");
+        puzzleState.makeMove("1,3-1,4");
+        puzzleState.makeMove("0,2-1,2");
+        puzzleState.makeMove("1,2-1,1");
+        puzzleState.makeMove("1,1-1,0");
+
+
+
         assertTrue(puzzleState.isSolved());
     }
 
-     */
+
 
     @Test
     void isLegalMove() {
@@ -45,7 +108,7 @@ public class PuzzleStateTest {
     @Test
     void isLegalToMoveFrom() {
         PuzzleState puzzleState = new PuzzleState();
-        assertTrue(puzzleState.isLegalToMoveFrom(new Position(0, 0)));
-        assertFalse(puzzleState.isLegalToMoveFrom(new Position(0, 1)));
+        assertTrue(puzzleState.isLegalToMoveFrom(new Position(1, 0)));
+        assertFalse(puzzleState.isLegalToMoveFrom(new Position(0, 0)));
     }
 }

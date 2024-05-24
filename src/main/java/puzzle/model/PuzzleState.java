@@ -246,6 +246,7 @@ public class PuzzleState implements TwoPhaseMoveState {
     public PuzzleState(ReadOnlyObjectWrapper<Square>[][] board) {
         this.board = board;
     }
+
 }
 
 

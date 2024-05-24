@@ -33,7 +33,7 @@ public class PuzzleApplication extends Application {
      * @throws IOException if an I/O error occurs during loading the FXML file
      */
 
-    public void start(Stage stage) throws IOException {
+    public void start(final Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/ui.fxml"));
         stage.setTitle("JavaFX Board Game Example");
         Scene scene = new Scene(root);

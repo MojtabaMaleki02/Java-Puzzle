@@ -37,6 +37,8 @@ public class PuzzleController {
 
     private PuzzleMoveSelector selector;
 
+    private static final int CIRCLE_RADIUS = 50;
+
     /**
      * Initializes the game controller. This method sets up the game state, the move selector,
      * and the game board UI components.
@@ -66,7 +68,7 @@ public class PuzzleController {
     private StackPane createSquare(int i, int j) {
         var square = new StackPane();
         square.getStyleClass().add("square");
-        var piece = new Circle(50);
+        var piece = new Circle(CIRCLE_RADIUS);
         piece.fillProperty().bind(createSquareBinding(model.squareProperty(i, j)));
         square.getChildren().add(piece);
         square.setOnMouseClicked(this::handleMouseClick);
@@ -122,7 +124,8 @@ public class PuzzleController {
      * @param oldPhase the previous phase
      * @param newPhase the new phase
      */
-    private void showSelectionPhaseChange(ObservableValue<? extends PuzzleMoveSelector.Phase> value, PuzzleMoveSelector.Phase oldPhase, PuzzleMoveSelector.Phase newPhase) {
+    private void showSelectionPhaseChange(ObservableValue<? extends PuzzleMoveSelector.Phase> value,
+                                          PuzzleMoveSelector.Phase oldPhase, PuzzleMoveSelector.Phase newPhase) {
         switch (newPhase) {
             case SELECT_FROM -> {}
             case SELECT_TO -> showSelection(selector.getFrom());
