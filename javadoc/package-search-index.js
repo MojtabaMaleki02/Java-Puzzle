@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"puzzle"},{"l":"puzzle.controller"},{"l":"puzzle.model"},{"l":"puzzle.solver"},{"l":"puzzle.util"},{"l":"util"},{"l":"util.javafx"}];updateSearchResults();
